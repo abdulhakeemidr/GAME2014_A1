@@ -23,4 +23,9 @@ public class UIBehaviour : MonoBehaviour
     {
         SceneManager.LoadScene(previousSceneIndex);
     }
+
+    public void OnRestartButtonPressed()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
