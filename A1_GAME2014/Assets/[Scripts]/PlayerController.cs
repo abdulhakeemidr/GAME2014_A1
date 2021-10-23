@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         MoveTouchInput();
         MoveKeyInput();
         AnimateMovement();
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour
     void MoveTouchInput()
     {
         moveDir = new Vector2(joystick.Horizontal, joystick.Vertical);
-        Debug.Log(moveDir.x + ", " + moveDir.y);
+        //Debug.Log(moveDir.x + ", " + moveDir.y);
     }
 
     void MoveKeyInput()
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // For Moving Up
-        if(moveDir.y > 0)
+        if(moveDir.y > 0 && Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x))
         {
             animator.SetBool(MoveLeftAnim, false);
             animator.SetBool(MoveRightAnim, false);
