@@ -5,8 +5,9 @@ using UnityEngine;
 public class UseWeapon : MonoBehaviour
 {
     public float rotationSpeed = 10;
-    public GameObject weapon;
+    private GameObject weapon;
     private GameObject pivotPoint;
+    private Animator animator;
     private Vector3 m_touchesEnded;
     //public RectTransform joystickArea;
 
@@ -15,6 +16,7 @@ public class UseWeapon : MonoBehaviour
     {
         pivotPoint = transform.GetChild(0).gameObject;
         weapon = transform.GetChild(0).GetChild(0).gameObject;
+        animator = weapon.GetComponent<Animator>();
     }
 
     void Update()
@@ -49,7 +51,14 @@ public class UseWeapon : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             pivotPoint.transform.rotation = Quaternion.Slerp(pivotPoint.transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+
+            AnimateShoot();
         }
         
+    }
+
+    void AnimateShoot()
+    {
+        animator.SetTrigger("TapToShoot");
     }
 }

@@ -9,6 +9,9 @@ public class ZombieController : MonoBehaviour
     private GameObject playerObj;
     private Vector2 moveDir;
     public float moveSpeed;
+    public float stoppingDistance = 1f;
+
+    private float Timer = 2;
 
     private Vector2 finalPos;
 
@@ -25,16 +28,24 @@ public class ZombieController : MonoBehaviour
     {
         Debug.Log(moveDir.magnitude);
         MoveZombie();
-        AnimateMovement();
-        zombieRb.MovePosition((Vector2)transform.position + (moveSpeed * moveDir * Time.deltaTime));
         
     }
 
     void MoveZombie()
     {
         finalPos = playerObj.transform.position;
-        moveDir = (finalPos - (Vector2)transform.position).normalized;
+        moveDir = (finalPos - (Vector2)transform.position);
         FlipZombie();
+        if(moveDir.magnitude > stoppingDistance)
+        {
+            zombieRb.MovePosition((Vector2)transform.position + (moveSpeed * moveDir.normalized * Time.deltaTime));
+            AnimateMovement();
+        }
+        else
+        {
+            moveDir = Vector3.zero;
+            AnimateMovement();
+        }
     }
 
     void AnimateMovement()
@@ -46,6 +57,17 @@ public class ZombieController : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false);
+        }
+    }
+
+    void AnimateAttack()
+    {
+        Timer -= Time.deltaTime;
+        Debug.Log("Time: " + Timer);
+        if (Timer <= 0f)
+        {
+            animator.SetTrigger("Attack");
+            Timer = 2f;
         }
     }
 
@@ -62,5 +84,15 @@ public class ZombieController : MonoBehaviour
         }
 
         transform.localScale = charScale;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            AnimateAttack();
+            Debug.Log("Zombie Collided");
+        }
     }
 }
