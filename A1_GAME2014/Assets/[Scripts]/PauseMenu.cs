@@ -1,3 +1,12 @@
+/* 
+ * Full Name        : Abdulhakeem Idris
+ * StudentID        : 101278361
+ * Date Modified    : October 19, 2021
+ * File             : PauseMenu.cs
+ * Description      : This is the Pause Menu Script
+ * Revision History : Version02
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

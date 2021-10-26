@@ -1,3 +1,12 @@
+/* 
+ * Full Name        : Abdulhakeem Idris
+ * StudentID        : 101278361
+ * Date Modified    : October 19, 2021
+ * File             : AmmoCount.cs
+ * Description      : This is the Ammo Count Script
+ * Revision History : Version02
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

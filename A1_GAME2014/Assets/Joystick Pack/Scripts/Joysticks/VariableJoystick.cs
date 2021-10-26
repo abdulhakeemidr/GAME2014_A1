@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+/// <summary>
+/// 
+/// This VariableJoystick Pack along with FixedJoystick, Dynamic Joystick 
+/// and the Joystick parent class is gotten from the Unity Asset called
+/// "Joystick Pack"
+/// 
+/// </summary>
 public class VariableJoystick : Joystick
 {
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
